@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800');
+@import url('https://fonts.googleapis.com/css?family=Baloo+Tammudu');
+body {
+	background: #ffffff;
+	font-family: 'Open Sans', sans-serif;
+}
+
+main {
+	margin-top: 52px;
+}
+
+/* background blanco*/
+.bg-white {
+	background: #ffffff;
+}
+
+.navbar-default { 
+	background: #ffffff;
+	border: none;
+	border-radius: 0;
+	box-shadow: 0px 2px 5px 0px rgba(91, 91, 91, 0.5);
+}
+
+.title {
+	text-align: center;
+	padding: 0;
+	margin: 0;
+	text-transform: uppercase;
+	font-family: 'Baloo Tammudu', cursive;
+}
+
+.description {
+	text-align: center;
+	color: #777777;
+	padding: 0;
+	margin: 0;
+}
+
+.section-info {
+	background: #f0f0f0;
+	padding: 50px 0;
+}
+
+/* INICIO ESTILO FOOTER */
+footer {
+	background: #555555;
+	color: #ffffff;
+}
+
+footer a {
+	color: #ffffff;
+}
+
+footer a:hover {
+	color: #f0f0f0;
+	text-decoration: none;
+}
+
+footer .container-fluid {
+	background: #222222;
+}
+
+footer p {
+	margin: 0;
+	padding: 10px 0;
+}
+
+footer ul {
+	padding: 0;
+}
+
+footer ul li {
+	list-style-type: none;
+}
+
+footer h2 {
+	font-size: 24px;
+}
+
+/* ESTILO OWL */
+.owl-theme .owl-nav .owl-prev {
+    position: absolute;
+    left: 0;
+    color: #333;
+    background: transparent;
+    top: 37%;
+    font-size: 100px;
+}
+
+.owl-theme .owl-nav .owl-next {
+    position: absolute;
+    right: 0;
+    color: #333;
+    background: transparent;
+    top: 37%;
+    font-size: 100px;
+}
