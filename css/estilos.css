@@ -9,6 +9,11 @@ main {
 	margin-top: 52px;
 }
 
+/* colores */
+.green {
+	color: #008000;
+}
+
 /* background blanco*/
 .bg-white {
 	background: #ffffff;
@@ -34,11 +39,6 @@ main {
 	color: #777777;
 	padding: 0;
 	margin: 0;
-}
-
-.section-info {
-	background: #f0f0f0;
-	padding: 50px 0;
 }
 
 /* INICIO ESTILO FOOTER */
@@ -95,3 +95,103 @@ footer h2 {
     top: 37%;
     font-size: 100px;
 }
+
+/* INICIO ESTILOS PARA LA SECCION INFO DE LA PAGINA */
+.section-info {
+	background: #f0f0f0;
+	padding: 50px 0;
+}
+
+.section-info .box-info {
+	border: 1px solid #ccc;
+	padding: 15px;
+	margin-top: 50px;
+}
+
+.section-info .box-info:hover {
+	background: #ffffff;
+	border-color: #999999;
+}
+
+.section-info .box-info .icon {
+	text-align: center;
+	display: block;
+	font-size: 70px;
+}
+
+.section-info .box-info .ion-md-analytics {
+	color: #f27a03;
+}
+
+.section-info .box-info .ion-md-basket {
+	color: #008000;
+}
+
+.section-info .box-info .ion-md-gift {
+	color: #0000ff;
+}
+
+.section-info .box-info .ion-md-stopwatch {
+	color: #800040;
+}
+
+.section-info .box-info h3 {
+	font-family: 'Baloo Tammudu', cursive;
+	margin: 5px 0;
+	font-size: 21px;
+}
+
+.section-info .box-info p {
+	text-align: justify;
+}
+/* FIN ESTILOS PARA LA SECCION INFO DE LA PAGINA */
+
+/* INICIA ESTILOS PARA LA SECCION TEAM DE LA PAGINA */
+.section-team {
+	background: #ffffff;
+	padding: 50px 0;
+}
+
+.section-team .box-team {
+	text-align: center;
+	margin-top: 50px;
+	background: #f0f0f0;
+	border: 1px dashed #999999;
+	padding: 10px;
+}
+
+.section-team .box-team .ion-md-person {
+	font-size: 70px;
+	color: #cccccc;
+}
+
+.section-team .box-team h3 {
+	font-size: 17px;
+	margin: 5px;
+}
+
+.section-team .box-team a {
+ 	text-decoration: none;
+ 	margin-right: 2px;
+ 	margin-bottom: 5px;
+ 	display: block;
+	color: #ffffff;
+	text-align: left;
+	padding: 5px;
+	border-radius: 2px;
+}
+
+.bg-facebook{
+	background: #4867aa !important;
+}
+
+.bg-twitter {
+	background: #2daae2 !important;
+}
+
+.bg-instagram {
+	background: #d02842 !important;
+}
+
+
+/* FIN ESTILOS PARA LA SECCION TEAM DE LA PAGINA */
