@@ -192,6 +192,11 @@ footer h2 {
 .bg-instagram {
 	background: #d02842 !important;
 }
-
-
 /* FIN ESTILOS PARA LA SECCION TEAM DE LA PAGINA */
+
+/* INICIO ESTILOS PARA LA SECCION PRESENTACION DE LA PAGINA */
+.section-presentacion {
+	padding: 50px 0;
+	background: url('../images/bg.jpg');
+}
+/* FIN ESTILOS PARA LA SECCION PRESENTACION DE LA PAGINA */
