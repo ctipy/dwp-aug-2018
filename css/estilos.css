@@ -198,5 +198,42 @@ footer h2 {
 .section-presentacion {
 	padding: 50px 0;
 	background: url('../images/bg.jpg');
+	background-position: center;
+}
+
+.section-presentacion h3 {
+	margin: 0;
+	color: #ffffff;
+}
+
+.section-presentacion p {
+	text-align: justify;
+	color: #ffffff;
+	font-size: 16px;
+	margin: 0;
 }
 /* FIN ESTILOS PARA LA SECCION PRESENTACION DE LA PAGINA */
+
+/* INICIO ESTILOS PARA LA SECCION CLIENTES DE LA PAGINA */
+.section-clientes {
+	padding: 50px 0;
+}
+
+.section-clientes .box-clientes {
+	border: 1px solid #cccccc;
+	border-radius: 5px;
+	background: #ffffff;
+	box-shadow: 1px 1px 6px 0px rgba(50, 50, 50, 0.15);
+	padding: 15px;
+}
+
+.section-clientes .box-clientes img {
+	width: 100%;
+	filter: grayscale(1);
+}
+
+.section-clientes .box-clientes img:hover {
+	filter: none;
+}
+
+/* FIN ESTILOS PARA LA SECCION CLIENTES DE LA PAGINA */

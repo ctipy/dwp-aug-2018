@@ -1,56 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<title>Desarrollo Web Profesional</title>
-	<meta name="description" content="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
-	<link rel="stylesheet" href="css/normalize.css">
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/owl.carousel.css">
-	<link rel="stylesheet" href="css/owl.theme.default.css">
-	<link rel="stylesheet" href="css/ionicons.min.css">
-	<link rel="stylesheet" href="css/estilos.css">
+	<meta name="description" content="">
+	<?php include 'includes/head.php'; ?>
 </head>
 <body>
-	<!-- Inicio encabezado del sitio -->
-	<header>
-		<nav class="navbar navbar-default navbar-fixed-top">
-  			<div class="container">
-			    <!-- Brand and toggle get grouped for better mobile display -->
-			    <div class="navbar-header">
-			      	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu-navbar" aria-expanded="false">
-				        <span class="sr-only">Toggle navigation</span>
-				        <span class="icon-bar"></span>
-				        <span class="icon-bar"></span>
-				        <span class="icon-bar"></span>
-			      	</button>
-	      			<a class="navbar-brand" href="#">
-	      				<img src="images/logo.png" width="100px">
-	      			</a>
-	    		</div>
-
-			    <div class="collapse navbar-collapse" id="menu-navbar">      
-			      <ul class="nav navbar-nav navbar-right">
-			        <li><a href="#">Link</a></li>
-			        <li class="dropdown">
-			         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-			         <ul class="dropdown-menu">
-			            <li><a href="#">Action</a></li>
-			            <li><a href="#">Another action</a></li>
-			            <li><a href="#">Something else here</a></li>
-			            <li role="separator" class="divider"></li>
-			            <li><a href="#">Separated link</a></li>
-			          </ul>
-			        </li>
-			      </ul>
-			    </div>
-		  </div>
-		</nav>
-	</header>
-	<!-- Fin encabezado del sitio -->
+	<!-- INICIO ENCABEZADO -->
+	<?php include 'includes/header.php'; ?>
+	<!-- FIN ENCABEZADO -->
 	
-	<!-- Inicio cuerpo del sitio -->
+	<!-- INICIO CONTENIDO -->
 	<main>
 		
 		<!-- Slider -->
@@ -236,16 +196,29 @@
 		<section class="section-presentacion">
 			<div class="container">
 				<div class="row">
-					<div class="col-sm-5">
-						
+					
+					<div class="col-sm-6">
+						<iframe width="100%" 
+								height="300" 
+								src="https://www.youtube.com/embed/E03VfjUoi2A?rel=0&amp;controls=0&amp;showinfo=0" 
+								frameborder="0" 
+								allow="autoplay; encrypted-media" 
+								allowfullscreen>
+						</iframe>
 					</div>
-					<div class="col-sm-7">
+
+					<div class="col-sm-6">
 						<h3>Quienes somos</h3>
 						<p>
 							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
 							consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+							cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+							proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Duis aute irure dolor in reprehenderit in voluptate velit esse
+							cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+							proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+							Duis aute irure dolor in reprehenderit in voluptate velit esse
 							cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
 							proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 						</p>
@@ -255,79 +228,65 @@
 		</section>
 		<!-- FIN SECTION PRESENTACION -->
 
-
-	</main>
-	<!-- Fin cuerpo del sitio -->
-
-	<!-- Inicio pie del sitio -->
-	<footer>
-		
-		<section class="container">
-			<div class="row">
-				<div class="col-sm-4">
-					<h2>Sobre Nosotros</h2>
-					<ul>
-						<li><a href="">Link</a></li>
-						<li><a href="">Link</a></li>
-						<li><a href="">Link</a></li>
-						<li><a href="">Link</a></li>
-						<li><a href="">Link</a></li>
-					</ul>
-				</div>
-
-				<div class="col-sm-4">
-					<h2>Links</h2>
-					<ul>
-						<li><a href="">Link</a></li>
-						<li><a href="">Link</a></li>
-						<li><a href="">Link</a></li>
-						<li><a href="">Link</a></li>
-						<li><a href="">Link</a></li>
-					</ul>
-				</div>
-
-				<div class="col-sm-4">
-					<h2>Informaciones</h2>
-					<ul>
-						<li><a href="">Link</a></li>
-						<li><a href="">Link</a></li>
-						<li><a href="">Link</a></li>
-						<li><a href="">Link</a></li>
-						<li><a href="">Link</a></li>
-					</ul>
+		<!-- FIN SECTION CLIENTES -->
+		<section class="section-clientes">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-sm-2">
+						<div class="box-clientes">
+							<a href="#">
+								<img src="images/clientes/1.png">
+							</a>
+						</div>
+					</div>
+					<div class="col-sm-2">
+						<div class="box-clientes">
+							<a href="#">
+								<img src="images/clientes/2.png">
+							</a>
+						</div>
+					</div>
+					<div class="col-sm-2">
+						<div class="box-clientes">
+							<a href="#">
+								<img src="images/clientes/3.png">
+							</a>
+						</div>
+					</div>
+					<div class="col-sm-2">
+						<div class="box-clientes">
+							<a href="#">
+								<img src="images/clientes/4.png">
+							</a>
+						</div>
+					</div>
+					<div class="col-sm-2">
+						<div class="box-clientes">
+							<a href="#">
+								<img src="images/clientes/1.png">
+							</a>
+						</div>
+					</div>
+					<div class="col-sm-2">
+						<div class="box-clientes">
+							<a href="#">
+								<img src="images/clientes/2.png">
+							</a>
+						</div>
+					</div>
 				</div>
 			</div>
 		</section>
+		<!-- FIN SECTION CLIENTES -->
+	</main>
+	<!-- FIN CONTENIDO -->
 
-		<section class="container-fluid">
-			<p class="text-center">
-				© 2011 - 2018. Todos los derechos reservados.
-			</p>
-		</section>
+	<!-- INICIO PIE -->
+	<?php include 'includes/footer.php'; ?>
+	<!-- FIN PIE -->
 
-	</footer>
-	<!-- Fin pie del sitio -->
-
-	<script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/owl.carousel.min.js"></script>
-	<script>
-		$(document).ready(function(){
-		  	$("#slides").owlCarousel({
-		  		items: 1,
-		  		margin: 0,
-		  		nav: true,
-		  		dots: true,
-		  		loop: true,
-		  		autoplay: true,
-		  		autoplayTimeout: 10000,
-		  		autoplayHoverPause: true,
-		  		navText: [
-	          	'<img src="images/arrow_left.png" alt="Left" class="img-responsive">',
-	          	'<img src="images/arrow_right.png" alt="Left" class="img-responsive">'
-	        ]
-		  	});
-		});
-	</script>
+	<!-- INICIO SCRIPT -->
+	<?php include 'includes/script.php'; ?>
+	<!-- FIN SCRIPT -->
 </body>
 </html>
