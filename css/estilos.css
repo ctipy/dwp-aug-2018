@@ -9,6 +9,10 @@ main {
 	margin-top: 52px;
 }
 
+.p-section {
+	padding: 50px 0;
+}
+
 /* colores */
 .green {
 	color: #008000;
@@ -225,6 +229,8 @@ footer h2 {
 	background: #ffffff;
 	box-shadow: 1px 1px 6px 0px rgba(50, 50, 50, 0.15);
 	padding: 15px;
+	margin-bottom: 10px;
+	margin-top: 10px;
 }
 
 .section-clientes .box-clientes img {
@@ -237,3 +243,44 @@ footer h2 {
 }
 
 /* FIN ESTILOS PARA LA SECCION CLIENTES DE LA PAGINA */
+
+
+/* INICIO CONTACTO */
+.contacto .form-control {
+	margin-bottom: 15px;
+	border-radius: 5px;
+	border-color: #cccccc;
+	height: 50px;
+}
+
+.h-textarea {
+	height: 120px !important;
+}
+
+.btn-primary {
+	border-radius: 20px;
+}
+/* FIN CONTACTO */
+
+/* INICIO NOSOTROS */
+.nosotros img {
+	width: 100%;
+}
+/* FIN NOSOTROS */
+
+
+/* INICIO SERVICIOS */
+.servicios .box-servicios {
+	border: 1px solid #cccccc;
+	background: #ffffff;
+	box-shadow: 1px 1px 3px 0px rgba(50, 50, 50, 0.15);
+	margin-bottom: 10px;
+	margin-top: 10px;
+	text-align: center;
+	padding-bottom: 10px;
+}
+
+.servicios .box-servicios img {
+	width: 100%;
+}
+/* FIN SERVICIOS */
