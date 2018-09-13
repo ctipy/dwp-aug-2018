@@ -27,7 +27,7 @@
 
 								<h4>Nombre del Servicio</h4>
 
-								<a href="">conoce más</a>
+								<a href="detalles.php">conoce más</a>
 							</div>
 						</div>
 					<?php } ?>

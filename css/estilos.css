@@ -284,3 +284,21 @@ footer h2 {
 	width: 100%;
 }
 /* FIN SERVICIOS */
+
+/* INICIO DETALLES */
+.detalles img {
+	width: 100%;
+}
+
+.detalles p {
+	text-align: justify;
+}
+
+.detalles h2 {
+	margin: 0;
+	padding: 0;
+	padding-bottom: 20px;
+	border-bottom: 2px solid #cccccc;
+	margin-bottom: 20px;
+}
+/* FIN DETALLES */
