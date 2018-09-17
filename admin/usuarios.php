@@ -71,10 +71,9 @@ desired effect
     </section>
     <section class="content container-fluid">
       
-      <div class="panel">
+<div class="panel">
         <div class="row">
           <div class="col-xs-12">
-            <span>100 registros</span>
             <a class="btn btn-primary btn-lg pull-right" href=""> <i class="fa fa-plus"></i></a>
         </div>
         </div>
@@ -109,7 +108,6 @@ desired effect
         </tbody>
       </table>
       </div>
-
     </section>
   </div>
 

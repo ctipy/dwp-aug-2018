@@ -22,7 +22,11 @@
         </li>
 
         <li>
-          <a href="equipo.php"><i class="fa fa-link"></i> <span>Equipo</span></a>
+          <a href="sliders.php"><i class="fa fa-link"></i> <span>Sliders</span></a>
+        </li>
+
+        <li>
+          <a href="colaboradores.php"><i class="fa fa-link"></i> <span>Colaboradores</span></a>
         </li>
 
         <li>
@@ -31,6 +35,10 @@
 
         <li>
           <a href="cms.php"><i class="fa fa-link"></i> <span>Contenido</span></a>
+        </li>
+
+        <li>
+          <a href="enlaces.php"><i class="fa fa-link"></i> <span>Enlaces</span></a>
         </li>
 
         <li>

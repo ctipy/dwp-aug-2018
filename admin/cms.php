@@ -66,10 +66,47 @@ desired effect
       </h1>
       <ol class="breadcrumb">
         <li><a href="index.php"><i class="fa fa-home"></i> Inicio</a></li>
+         <li><span>Contenido</span></li>
       </ol>
     </section>
     <section class="content container-fluid">
-      
+      <div class="panel">
+        <div class="row">
+          <div class="col-xs-12">
+            <a class="btn btn-primary btn-lg pull-right" href=""> <i class="fa fa-plus"></i></a>
+        </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <table class="table table-bordered table-striped table-hover">
+        <thead>
+          <tr>
+            <th>Col 1</th>
+            <th>Col 2</th>
+            <th>Col 3</th>
+            <th>Col 4</th>
+            <th class="text-center" width="10%">
+              <i class="fa fa-cogs"></i>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php for ($i=0; $i < 10 ; $i++) { ?>
+           <tr>
+            <td>Col 1</td>
+            <td>Col 2</td>
+            <td>Col 3</td>
+            <td>Col 4</td>
+            <td class="text-center">
+              <a class="btn btn-warning btn-xs" href=""> <i class="fa fa-edit"></i></a>
+              <a class="btn btn-danger btn-xs" href=""> <i class="fa fa-remove"></i></a>
+            </td>
+          </tr>
+          <?php } ?>
+        </tbody>
+      </table>
+      </div>
     </section>
   </div>
 
