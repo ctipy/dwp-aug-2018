@@ -13,7 +13,7 @@ require('Calculadora.php');
       
 
 	      foreach ($query->fetchAll() as $file) {
-	       //	print_r($file['nombre']) . '<hr>';
+	       	print_r($file['nombre']) . '<hr>';
 	      }
 
 
