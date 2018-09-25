@@ -1,3 +1,4 @@
+<?php require '../conexion/conexion.php';?>
 <header class="main-header">
 
     <!-- Logo -->

@@ -18,3 +18,4 @@
 
 
 ?>
+<?php define('_RUTA_', 'http://localhost/dwp-aug-2018/'); ?>

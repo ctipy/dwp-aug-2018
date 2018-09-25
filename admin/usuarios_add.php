@@ -55,9 +55,42 @@ desired effect
   <!-- HEADER -->
   <?php include 'includes/header.php'; ?>
   <?php
-    $sql = "SELECT * from usuarios ORDER by nombre";
-    $query = $connection->prepare($sql);
-    $query->execute();
+    //Validad si existe un post
+    if(isset($_POST)){
+        //Si existe un POST, validar que los campos cumplan con los requisitos
+        if($_POST['guardar'] == 'guardar' && $_POST['nombre'] != '' && $_POST['password'] != '' && $_POST['activo'] != '' ){
+            
+            //Preparar variables segun los post recibidos
+            $nombre = $_POST['nombre'];
+            $password = md5($_POST['password']);
+            $activo = $_POST['activo'];
+
+            //Definir una variable con la consulta SQL.
+            $sql = 'INSERT INTO usuarios (nombre, password, activo) VALUES (:nombre, :password, :activo)';
+            
+            //Definiendo una variable $data con los valores a guardase en la consulta sql
+            $data = array(
+                'nombre' => $nombre,
+                'password' => $password,
+                'activo'    => $activo
+            );
+
+           //Prepamos la conexion  
+           $query = $connection->prepare($sql);
+            
+            //Definimos un try catch para que devuelta un estado
+            try{
+                 //Si sale bien se guarda los reigstros   
+                 $query->execute($data);
+
+            } catch (PDOException $e) {
+                //si sale mal devuelve el error con el motivo
+                print_r($e);
+           
+            }
+        } 
+
+    }
 
 
   ?>
@@ -69,7 +102,7 @@ desired effect
   <div class="content-wrapper">
     <section class="content-header">
       <h1>
-       Usuarios
+        Registrar nuevo usuario
       </h1>
       <ol class="breadcrumb">
         <li><a href="index.php"><i class="fa fa-home"></i> Inicio</a></li>
@@ -81,45 +114,39 @@ desired effect
 <div class="panel">
         <div class="row">
           <div class="col-xs-12">
-            <a href="<?php echo _RUTA_ ?>/admin/usuarios_add.php" class="btn btn-primary btn-lg pull-right" > <i class="fa fa-plus"></i></a>
+            <a href="<?php echo _RUTA_; ?>/admin/usuarios.php" class="btn btn-warning btn-lg pull-right" href=""> <i class="fa fa-close"></i> Salir</a>
         </div>
         </div>
       </div>
 
       <div class="panel">
-        <table class="table table-bordered table-striped table-hover">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>NOMBRE</th>
-            <th>EMAIL</th>
-            <th>ACTIVO</th>
-            <th class="text-center" width="10%">
-              <i class="fa fa-cogs"></i>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <?php foreach ($query->fetchAll() as $file ) {  ?>
-           <tr>
-            <td><?php echo $file['id']; ?></td>
-            <td><?php echo $file['nombre']; ?></td>
-            <td><?php echo $file['emial']; ?></td>
-            <td>
-                <?php if( $file['activo'] == 1 ) {  ?>
-                   <i class="fa fa-check text-green"></i>
-                <?php } else {   ?>
-                    <i class="fa fa-remove text-red"></i>
-                <?php }  ?>
-            </td>
-            <td class="text-center">
-              <a class="btn btn-warning btn-xs" href=""> <i class="fa fa-edit"></i></a>
-              <a class="btn btn-danger btn-xs" href=""> <i class="fa fa-remove"></i></a>
-            </td>
-          </tr>
-          <?php } ?>
-        </tbody>
-      </table>
+        <div class="row">
+            <form action="<?php echo _RUTA_ ?>/admin/usuarios_add.php" method="POST">
+                <div class="form-group col-md-4">
+                    <label>Nombre</label>
+                    <input type="text" name="nombre" required class="form-control">
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label>Contrasena</label>
+                    <input type="password" name="password" required class="form-control">
+                </div>
+
+                 <div class="form-group col-md-2">
+                    <label>Activo</label>
+                    <select name="activo" class="form-control" required>
+                        <option value="1">Activo</option>
+                        <option value="0">Inactivo</option>
+                    </select>
+                </div>
+
+                <div class="col-md-2">
+                        <br>
+                       <button type="submit" name="guardar" value="guardar" class="btn btn-primary">Guardar</button> 
+                </div>
+
+            </form>
+        </div>
       </div>
     </section>
   </div>
