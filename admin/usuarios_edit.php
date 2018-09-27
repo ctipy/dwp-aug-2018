@@ -56,56 +56,49 @@ desired effect
 
   <?php include 'includes/header.php'; ?>
   <?php
-    //Validad si existe un post
-    if( isset($_POST) ){
-        //Si existe un POST, validar que los campos cumplan con los requisitos
-        if($_POST['guardar'] == 'guardar' && $_POST['nombre'] != '' && $_POST['password'] != '' && $_POST['activo'] != '' ){
-            
-            //Preparar variables segun los post recibidos
-            $nombre = $_POST['nombre'];
-            $password = md5($_POST['password']);
-            $activo = $_POST['activo'];
+        //Obtener el registro del usuario
+        $total = 0;
+        if(isset($_GET['id'])){
 
-            //Definir una variable con la consulta SQL.
-            $sql = 'INSERT INTO usuarios (nombre, password, activo) VALUES (:nombre, :password, :activo)';
-            
-            //Definiendo una variable $data con los valores a guardase en la consulta sql
-            $data = array(
-                'nombre' => $nombre,
-                'password' => $password,
-                'activo'    => $activo
-            );
+            if($_GET['id'] > 0){
 
-           //Prepamos la conexion  
-           $query = $connection->prepare($sql);
-            
-            //Definimos un try catch para que devuelta un estado
-            try{
-                 //Si sale bien se guarda los reigstros   
-                 if( $query->execute($data) ){
-                     //mensaje verdadero
-                     $mensaje = '<p class="alert alert-success">Registrado correctamente</p>';
-                     echo '<script> window.location = "usuarios.php"; </script>';
-                  
-                    
-                 } else {
-                     //mesnaje falso
-                    $mensaje = '<p class="alert alert-danger">Ocurrio un error al guardar</p>';
-                 }
+                $sql = "SELECT * FROM usuarios WHERE id = " . $_GET['id'];
+                $query = $connection->prepare($sql);
+                $query->execute();
+                $total = $query->rowCount();
 
-            } catch (PDOException $e) {
-                //si sale mal devuelve el error con el motivo
-                print_r($e);
-                
-                $mensaje = '<p class="alert alert-danger">'. $e .'</p>';
-           
             }
-        } 
 
-    }
+        }
 
-  
-  ?>
+
+        //Actualizar datos del usuario
+       if(isset($_POST)){
+
+            if($_POST['actualizar'] == 'actualizar' && $_POST['nombre'] != '' && $_POST['id'] > 0){
+                   $sql = "UPDATE usuarios set nombre = :nombre, activo=:activo WHERE id = " . $_POST['id'];
+                   $data =  array(
+                        'nombre' => $_POST['nombre'],
+                        'activo' => $_POST['activo']
+                   );
+                    
+                   $query = $connection->prepare($sql);
+
+
+                 try{
+
+                    $query->execute($data);
+
+                    } catch(Exception $e){
+
+
+                 }
+                   
+            }
+
+       }
+
+   ?>
  <?php include 'includes/mensajes.php';?>
   
   <!-- ASIDE - SIDEBAR  -->
@@ -115,7 +108,7 @@ desired effect
   <div class="content-wrapper">
     <section class="content-header">
       <h1>
-        Registrar nuevo usuario
+        Editar usuario
       </h1>
       <ol class="breadcrumb">
         <li><a href="index.php"><i class="fa fa-home"></i> Inicio</a></li>
@@ -139,31 +132,42 @@ desired effect
 
       <div class="panel">
         <div class="row">
-            <form action="usuarios_add.php" method="POST">
+          <?php if($total > 0) { 
+                 $usuario = $query->fetchAll()[0];
+                // var_dump($usuario);                 
+              ?>  
+            <form action="usuarios_edit.php" method="POST">
                 <div class="form-group col-md-4">
                     <label>Nombre</label>
-                    <input type="text" name="nombre" required class="form-control">
+                    <input type="text" name="nombre" value="<?php echo $usuario['nombre']; ?>" required class="form-control">
                 </div>
 
                 <div class="form-group col-md-4">
                     <label>Contrasena</label>
-                    <input type="password" name="password" required class="form-control">
+                    <input type="password" name="password"  class="form-control">
                 </div>
 
                  <div class="form-group col-md-2">
                     <label>Activo</label>
                     <select name="activo" class="form-control" required>
-                        <option value="1">Activo</option>
-                        <option value="0">Inactivo</option>
+                        <option value="1" <?php if($usuario['activo'] == 1){ echo 'selected'; } ?>  >Activo</option>
+                        <option value="0" <?php if($usuario['activo'] == 0){ echo 'selected'; } ?> >Inactivo</option>
                     </select>
                 </div>
 
                 <div class="col-md-2">
                         <br>
-                       <button type="submit" name="guardar" value="guardar" class="btn btn-primary">Guardar</button> 
+                        <input type="hidden" name="id"  value="<?php echo $usuario['id']; ?>">
+                       <button type="submit" name="actualizar" value="actualizar" class="btn btn-primary">Actualizar</button> 
                 </div>
 
             </form>
+          <?php } else {  ?>
+
+            <a href="usuarios.php" class="btn btn-warning">El usuario no exite, volver a la lista</a>
+          
+          <?php } ?>
+
         </div>
       </div>
     </section>

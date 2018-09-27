@@ -103,7 +103,7 @@ desired effect
           <?php foreach ($query->fetchAll() as $file ) {  ?>
            <tr>
             <td><?php echo $file['id']; ?></td>
-            <td><?php echo $file['nombre']; ?></td>
+            <td><?php echo $file['nombre']; ?> </td>
             <td><?php echo $file['emial']; ?></td>
             <td>
                 <?php if( $file['activo'] == 1 ) {  ?>
@@ -113,8 +113,8 @@ desired effect
                 <?php }  ?>
             </td>
             <td class="text-center">
-              <a class="btn btn-warning btn-xs" href=""> <i class="fa fa-edit"></i></a>
-              <a class="btn btn-danger btn-xs" href=""> <i class="fa fa-remove"></i></a>
+              <a class="btn btn-warning btn-xs" href="usuarios_edit.php?id=<?php echo $file['id']; ?>"> <i class="fa fa-edit"></i></a>
+              <a class="btn btn-danger btn-xs" href="usuarios_delete.php?id=<?php echo $file['id']; ?>"> <i class="fa fa-remove"></i></a>
             </td>
           </tr>
           <?php } ?>
