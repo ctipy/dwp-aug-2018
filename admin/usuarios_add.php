@@ -28,6 +28,18 @@
   <!-- Google Font -->
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+
+        <script>
+         function subir_imagen(input)
+        {
+            self.name = 'opener';
+            var name = document.getElementsByName("name")[0].value;
+            remote = open('gestor/img.slides.php?name='+name+'&input='+input,'remote', 'align=center,width=600,height=300,resizable=yes,status=yes');
+            remote.focus();
+        }
+
+        </script>
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -164,6 +176,18 @@ desired effect
                         <option value="0">Inactivo</option>
                     </select>
                 </div>
+
+
+                <div class="form-group col-md-2">
+                    <label>Avatar</label>
+                    <input type="text" iname="avatar" class="form-control" id="avatar"  onclick="alertar('Saludar')" >
+                </div>
+
+
+                <script>
+                
+
+                </script>
 
                 <div class="col-md-2">
                         <br>
