@@ -59,19 +59,21 @@ desired effect
     //Validad si existe un post
     if( isset($_POST) ){
         //Si existe un POST, validar que los campos cumplan con los requisitos
-        if($_POST['guardar'] == 'guardar' && $_POST['nombre'] != '' && $_POST['password'] != '' && $_POST['activo'] != '' ){
+        if($_POST['guardar'] == 'guardar' && $_POST['nombre'] != '' && $_POST['password'] != '' && $_POST['activo'] != '' && $_POST['emial'] != '' ){
             
             //Preparar variables segun los post recibidos
             $nombre = $_POST['nombre'];
             $password = md5($_POST['password']);
             $activo = $_POST['activo'];
+            $emial = $_POST['emial'];
 
             //Definir una variable con la consulta SQL.
-            $sql = 'INSERT INTO usuarios (nombre, password, activo) VALUES (:nombre, :password, :activo)';
+            $sql = 'INSERT INTO usuarios (nombre, email,  password, activo) VALUES (:nombre, :emial, :password, :activo)';
             
             //Definiendo una variable $data con los valores a guardase en la consulta sql
             $data = array(
                 'nombre' => $nombre,
+                'emial' => $emial,
                 'password' => $password,
                 'activo'    => $activo
             );
@@ -145,7 +147,12 @@ desired effect
                     <input type="text" name="nombre" required class="form-control">
                 </div>
 
-                <div class="form-group col-md-4">
+                 <div class="form-group col-md-4">
+                    <label>Email</label>
+                    <input type="email" name="emial" required class="form-control">
+                </div>
+
+                <div class="form-group col-md-2">
                     <label>Contrasena</label>
                     <input type="password" name="password" required class="form-control">
                 </div>

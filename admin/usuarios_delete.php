@@ -1,18 +1,10 @@
-<?php
-session_start();
 
-
-if( !isset($_SESSION['logueado']) ){
-    header('Location: login.php');
-}
-
-?>
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Inicio | Admin</title>
+  <title>Usuarios | Admin</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
@@ -62,7 +54,51 @@ desired effect
 <div class="wrapper">
 
   <!-- HEADER -->
+
   <?php include 'includes/header.php'; ?>
+  <?php
+  
+     $total = 0;
+
+     if( isset($_GET['id']) ){
+
+            if ($_GET['id'] > 0 ) {
+                
+                $sql = "SELECT * FROM usuarios WHERE id = " . $_GET['id'];
+                $query = $connection->prepare($sql);
+                $query->execute();
+                $total = $query->rowCount();
+            }
+
+     }
+
+     //Eliminar usuario
+     if(isset($_POST['id']) && isset($_POST['eliminar'])){
+
+        if(isset($_POST['id']) > 0 ) {
+            $sql = "DELETE FROM usuarios WHERE id = " . $_POST['id'];
+            $query = $connection->prepare($sql);
+           // $query->execute();
+
+            try {
+
+                $query->execute();
+                header('Location : usuarios.php');
+                $mensaje = '<p class="alert alert-success">Usuario Eliminado</p>';
+
+            } catch (PDOException $e) {
+                $mensaje = '<p class="alert alert-warning">Error al eliminar Usuario '. $e->getMessage() .' </p>';       
+            }
+
+        }
+
+     }
+  
+  
+  
+  ?>
+  
+ <?php include 'includes/mensajes.php';?>
   
   <!-- ASIDE - SIDEBAR  -->
   <?php include 'includes/aside.php'; ?>
@@ -71,14 +107,45 @@ desired effect
   <div class="content-wrapper">
     <section class="content-header">
       <h1>
-        Página Inicial
+        Editar usuario
       </h1>
       <ol class="breadcrumb">
         <li><a href="index.php"><i class="fa fa-home"></i> Inicio</a></li>
+        <li><span>Usuarios</span></li>
       </ol>
+    
     </section>
     <section class="content container-fluid">
       
+<div class="panel">
+        <div class="row">
+          <div class="col-xs-12">
+             
+            <a href="usuarios.php" class="btn btn-warning btn-lg pull-right" href=""> <i class="fa fa-close"></i> Salir</a>
+        </div>
+        
+        </div>
+ 
+       
+      </div>
+
+      <div class="panel">
+        <div class="row">
+          
+         <div class="col-md-12">
+         <?php if ($total > 0) { ?>
+                <form action="usuarios_delete.php" method="POST">
+                    <p class="alert alert-warning">Confirmar la eliminacion del registro num. <?php echo $_GET['id']; ?></p>   
+                    <input type="hidden" name="id" value="<?php echo $_GET['id']; ?>">
+                    <button type="submit" name="eliminar" value="eliminar" class="btn btn-danger"> Eliminar registro </button>
+                </form>    
+
+          <?php  } ?>     
+        
+        </div>      
+
+        </div>
+      </div>
     </section>
   </div>
 

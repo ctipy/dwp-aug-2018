@@ -1,3 +1,44 @@
+<?php 
+@session_start();
+include('../conexion/conexion.php');
+
+if(isset($_POST)){
+    
+    if( $_POST['email'] != '' && $_POST['password'] != ''){
+      $email = $_POST['email'];
+      $password = md5($_POST['password']);
+
+
+      $sql = "SELECT * FROM usuarios WHERE email = '$email' AND password = '$password'";
+      $query = $connection->prepare($sql);
+      $query->execute();
+     
+      if($query->rowCount() > 0) {
+
+        foreach ($query->fetchAll() as $fila) {
+           $_SESSION['logueado'] = 'logueado';
+           $_SESSION['usuario_id'] = $fila['id'];
+           $_SESSION['usuario'] = $fila['nombre'];
+           header('Location: index.php');
+        } 
+
+      } else {
+        $mensaje = '<p class="alert alert-danger">Datos incorrectos!</p>';
+      }
+
+
+
+
+   }
+
+
+}
+
+
+
+
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,13 +74,13 @@
   <!-- /.login-logo -->
   <div class="login-box-body">
     <p class="login-box-msg">Inicia sesión para comenzar</p>
-    <form >
+    <form action="login.php" method="POST" >
       <div class="form-group has-feedback">
-        <input type="email" class="form-control" placeholder="Email">
+        <input type="email" name="email" required class="form-control" placeholder="Email">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="password" class="form-control" placeholder="Password">
+        <input type="password" name="password" required class="form-control" placeholder="Password">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <div class="row">

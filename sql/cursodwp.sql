@@ -20,7 +20,7 @@ USE `cursodwp` ;
 CREATE TABLE IF NOT EXISTS `cursodwp`.`usuarios` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(255) NULL,
-  `emial` VARCHAR(255) NULL,
+  `email` VARCHAR(255) NULL,
   `password` VARCHAR(255) NULL,
   `avatar` VARCHAR(255) NULL,
   `activo` TINYINT(1) NULL,

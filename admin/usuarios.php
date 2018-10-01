@@ -104,7 +104,7 @@ desired effect
            <tr>
             <td><?php echo $file['id']; ?></td>
             <td><?php echo $file['nombre']; ?> </td>
-            <td><?php echo $file['emial']; ?></td>
+            <td><?php echo $file['email']; ?></td>
             <td>
                 <?php if( $file['activo'] == 1 ) {  ?>
                    <i class="fa fa-check text-green"></i>
