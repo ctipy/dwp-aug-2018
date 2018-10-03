@@ -91,6 +91,7 @@ desired effect
         <thead>
           <tr>
             <th>ID</th>
+            <th>AVATAR</th>
             <th>NOMBRE</th>
             <th>EMAIL</th>
             <th>ACTIVO</th>
@@ -103,6 +104,14 @@ desired effect
           <?php foreach ($query->fetchAll() as $file ) {  ?>
            <tr>
             <td><?php echo $file['id']; ?></td>
+            <td>
+                <?php if($file['avatar'] != '') {   ?> 
+                  <img src="../images/usuarios/<?php echo $file['avatar']; ?>" width="60px">   
+                <?php } else {  ?>
+                  <img src="../images/usuarios/no-avatar.png" width="60px">   
+                <?php } ?>  
+            
+              </td>
             <td><?php echo $file['nombre']; ?> </td>
             <td><?php echo $file['email']; ?></td>
             <td>

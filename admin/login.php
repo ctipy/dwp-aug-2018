@@ -19,6 +19,7 @@ if(isset($_POST)){
            $_SESSION['logueado'] = 'logueado';
            $_SESSION['usuario_id'] = $fila['id'];
            $_SESSION['usuario'] = $fila['nombre'];
+           $_SESSION['avatar'] = $fila['avatar'];
            header('Location: index.php');
         } 
 

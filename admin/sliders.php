@@ -54,6 +54,12 @@ desired effect
 
   <!-- HEADER -->
   <?php include 'includes/header.php'; ?>
+
+  <?php
+    $sql = "SELECT * from sliders ORDER by nombre";
+    $query = $connection->prepare($sql);
+    $query->execute();
+  ?>
   
   <!-- ASIDE - SIDEBAR  -->
   <?php include 'includes/aside.php'; ?>
@@ -73,7 +79,7 @@ desired effect
       <div class="panel">
         <div class="row">
           <div class="col-xs-12">
-            <a class="btn btn-primary btn-lg pull-right" href=""> <i class="fa fa-plus"></i></a>
+            <a class="btn btn-primary btn-lg pull-right" href="sliders_add.php"> <i class="fa fa-plus"></i></a>
         </div>
         </div>
       </div>
@@ -82,25 +88,25 @@ desired effect
         <table class="table table-bordered table-striped table-hover">
         <thead>
           <tr>
-            <th>Col 1</th>
-            <th>Col 2</th>
-            <th>Col 3</th>
-            <th>Col 4</th>
+            <th>ID</th>
+            <th>NOMBRE</th>
+            <th>IMAGEN</th>
+            <th>VISIBLE</th>
             <th class="text-center" width="10%">
               <i class="fa fa-cogs"></i>
             </th>
           </tr>
         </thead>
         <tbody>
-          <?php for ($i=0; $i < 10 ; $i++) { ?>
+          <?php foreach($query->fetchAll() as $fila ) { ?>
            <tr>
-            <td>Col 1</td>
-            <td>Col 2</td>
-            <td>Col 3</td>
-            <td>Col 4</td>
+             <td><?php echo $fila['id']; ?></td>
+             <td><?php echo $fila['nombre']; ?></td>
+             <td><img src="../images/sliders/<?php echo $fila['imagen']; ?>" width="60px"></td>
+             <td><?php echo $fila['visible']; ?></td>
             <td class="text-center">
-              <a class="btn btn-warning btn-xs" href=""> <i class="fa fa-edit"></i></a>
-              <a class="btn btn-danger btn-xs" href=""> <i class="fa fa-remove"></i></a>
+              <a class="btn btn-warning btn-xs" href="sliders_edit.php?<?php echo $fila['id']; ?>"> <i class="fa fa-edit"></i></a>
+              <a class="btn btn-danger btn-xs" href="sliders_delete.php?<?php echo $fila['id']; ?>""> <i class="fa fa-remove"></i></a>
             </td>
           </tr>
           <?php } ?>

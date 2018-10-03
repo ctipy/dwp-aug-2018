@@ -30,11 +30,19 @@
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="user-header">
-                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <?php if(isset($_SESSION['avatar'])) {  ?>
+                    <?php if($_SESSION['avatar'] != '') {  ?>
+                        <img src="../images/usuarios/<?php echo $_SESSION['avatar'] ?>" class="img-circle" alt="User Image">
+                    <?php } else {  ?>
+                        <img src="../images/usuarios/no-avatar.png" class="img-circle" alt="User Image">     
+                    <?php } ?>  
+           
+                <?php } ?>
 
                 <p>
-                  Alexander Pierce - Web Developer
-                  <small>Member since Nov. 2012</small>
+                  <?php if(isset($_SESSION['usuario'])) { echo $_SESSION['usuario']; } ?>
+          
+                  <small>Miembro desde. </small>
                 </p>
               </li>
               <!-- Menu Footer-->
@@ -43,7 +51,7 @@
                   <a href="#" class="btn btn-default btn-flat">Perfil</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Salir</a>
+                  <a href="logout.php" class="btn btn-default btn-flat">Salir</a>
                 </div>
               </li>
             </ul>

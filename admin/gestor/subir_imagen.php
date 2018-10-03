@@ -7,6 +7,7 @@
     // recoge los valores enviados por GET
     $name = $_GET['name'];
     $input = $_GET['input'];
+    $carpeta = $_GET['carpeta'];
     // obtener extencion de la imagen
     $extension = substr(strrchr($_FILES['userfile']['name'], "."), 1);
     // random 5 digitos
@@ -14,7 +15,7 @@
     // renombra la imagen
     $nuevo_nombre = $input . '_' . $random . '.' . $extension;
     // directorio
-    $directorio = "../../images/usuarios/";
+    $directorio = "../../images/". $carpeta ."/";
     // guarda el archivo en el directorio
     move_uploaded_file($_FILES["userfile"]["tmp_name"], $directorio . $nuevo_nombre)
     ?>

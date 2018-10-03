@@ -51,7 +51,43 @@ require('Calculadora.php');
 						}
 						*/
 
+
+					@session_start();
+					if (isset($_SESSION['logueado']) and $_SESSION['logueado']) {
+					} else {
+						header('Location: login.php');
+						exit;
+					}
+
+
+					//Cerrar session
+					session_start();
+					session_destroy();
+					header('location: login.php');
+
+
+
+
 		        
 
 
  ?>
+
+
+ 					<script>
+function subir_imagen(input)
+{
+	self . name = 'opener';
+	var name = document . getElementsByName("name")[0] . value;
+	remote = open('gestor/img.slides.php?name=' + name + '&input=' + input, 'remote', 'align=center,width=600,height=300,resizable=yes,status=yes');
+	remote . focus();
+}
+
+function subir_imagen_mobile(input)
+{
+	self . name = 'opener';
+	var name = document . getElementsByName("name")[0] . value;
+	remote = open('gestor/img.slides.m.php?name=' + name + '&input=' + input, 'remote', 'align=center,width=600,height=300,resizable=yes,status=yes');
+	remote . focus();
+}
+< / script >

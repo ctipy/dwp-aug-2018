@@ -31,11 +31,11 @@
 
 
         <script>
-         function subir_imagen(input)
+         function subir_imagen(input, carpeta)
         {
             self.name = 'opener';
             var name = document.getElementsByName("nombre")[0].value;
-            remote = open('gestor/img_usuarios.php?name='+name+'&input='+input,'remote', 'align=center,width=600,height=300,resizable=yes,status=yes');
+            remote = open('gestor/subir_imagen.php?name='+name+'&input='+input+'&carpeta='+carpeta ,'remote', 'align=center,width=600,height=300,resizable=yes,status=yes');
             remote.focus();
         }
 
@@ -71,26 +71,20 @@ desired effect
     //Validad si existe un post
     if( isset($_POST) ){
         //Si existe un POST, validar que los campos cumplan con los requisitos
-        if($_POST['guardar'] == 'guardar' && $_POST['nombre'] != '' && $_POST['password'] != '' && $_POST['activo'] != '' && $_POST['emial'] != '' ){
+        if($_POST['guardar'] == 'guardar' && $_POST['nombre'] != '' && $_POST['imagen'] != ''){
             
-            //Preparar variables segun los post recibidos
-            $nombre = $_POST['nombre'];
-            $password = md5($_POST['password']);
-            $activo = $_POST['activo'];
-            $emial = $_POST['emial'];
-            $avatar = $_POST['avatar'];
-
             //Definir una variable con la consulta SQL.
-            $sql = 'INSERT INTO usuarios (nombre, email,  password, avatar, activo, fecha_add) VALUES (:nombre, :emial, :password, :avatar, :activo, NOW() )';
-            
+            $sql = 'INSERT INTO sliders (nombre, imagen,  url, target, visible, fecha_add) VALUES (:nombre, :imagen, :url, :target, :visible, NOW() )';
             //Definiendo una variable $data con los valores a guardase en la consulta sql
             $data = array(
-                'nombre' => $nombre,
-                'emial' => $emial,
-                'password' => $password,
-                'activo'    => $activo,
-                'avatar' => $avatar
+                'nombre' => $_POST['nombre'],
+                'imagen' => $_POST['imagen'],
+                'url' => $_POST['url'],
+                'target'    => $_POST['target'],
+                'visible' => $_POST['visible']
             );
+
+
 
            //Prepamos la conexion  
            $query = $connection->prepare($sql);
@@ -101,7 +95,7 @@ desired effect
                  if( $query->execute($data) ){
                      //mensaje verdadero
                      $mensaje = '<p class="alert alert-success">Registrado correctamente</p>';
-                     echo '<script> window.location = "usuarios.php"; </script>';
+                     echo '<script> window.location = "sliders.php"; </script>';
                   
                     
                  } else {
@@ -155,34 +149,39 @@ desired effect
 
       <div class="panel">
         <div class="row">
-            <form action="usuarios_add.php" method="POST" name="form">
+            <form action="sliders_add.php" method="POST" name="form">
                 <div class="form-group col-md-4">
                     <label>Nombre</label>
                     <input type="text" name="nombre" required class="form-control">
                 </div>
 
                  <div class="form-group col-md-4">
-                    <label>Email</label>
-                    <input type="email" name="emial" required class="form-control">
+                    <label>Url</label>
+                    <input type="text" name="url" required class="form-control">
                 </div>
 
-                <div class="form-group col-md-2">
-                    <label>Contrasena</label>
-                    <input type="password" name="password" required class="form-control">
-                </div>
-
+                
                  <div class="form-group col-md-2">
-                    <label>Activo</label>
-                    <select name="activo" class="form-control" required>
+                    <label>Mostrar</label>
+                    <select name="mostrar" class="form-control" required>
                         <option value="1">Activo</option>
                         <option value="0">Inactivo</option>
                     </select>
                 </div>
 
 
+                 <div class="form-group col-md-2">
+                    <label>Target</label>
+                    <select name="target" class="form-control" required>
+                        <option value="_parent">Misma pagina</option>
+                        <option value="_blank">Pagina nueva</option>
+                    </select>
+                </div>
+
+
                 <div class="form-group col-md-2">
-                    <label>Avatar</label>
-                    <input type="text" name="avatar"  class="form-control" id="avatar"  onclick="subir_imagen('avatar')">
+                    <label>Imagen</label>
+                    <input type="text" name="imagen"  class="form-control" id="imagen"  onclick="subir_imagen('imagen', 'sliders')">
                 </div>
 
 
