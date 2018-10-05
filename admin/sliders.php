@@ -105,8 +105,8 @@ desired effect
              <td><img src="../images/sliders/<?php echo $fila['imagen']; ?>" width="60px"></td>
              <td><?php echo $fila['visible']; ?></td>
             <td class="text-center">
-              <a class="btn btn-warning btn-xs" href="sliders_edit.php?<?php echo $fila['id']; ?>"> <i class="fa fa-edit"></i></a>
-              <a class="btn btn-danger btn-xs" href="sliders_delete.php?<?php echo $fila['id']; ?>""> <i class="fa fa-remove"></i></a>
+              <a class="btn btn-warning btn-xs" href="sliders_edit.php?id=<?php echo $fila['id']; ?>"> <i class="fa fa-edit"></i></a>
+              <a class="btn btn-danger btn-xs" href="sliders_delete.php?id=<?php echo $fila['id']; ?>""> <i class="fa fa-remove"></i></a>
             </td>
           </tr>
           <?php } ?>

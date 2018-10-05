@@ -14,24 +14,15 @@
         return $_SERVER['REMOTE_ADDR'];
     }
 
-  function v_email_newsletters($var)
-  {
-      require 'conexion/conexion.php';
-      $sql = "SELECT email FROM newsletters WHERE email = '$var'";
-      $query = $connection->prepare($sql);
-      $query->execute();
-      $total = $query->rowCount();
-      return $total;
-  }
 
-  function get_cms($id, $campo)
-  {
-    require 'conexion/conexion.php';
-    $sql = "SELECT $campo FROM cms WHERE id = '$id'";
-    $query = $connection->prepare($sql);
-    $query->execute();
-    $rows = $query->fetch();
-    return $rows[$campo];
-  }
+    function getSliders($cantidad){
+         include 'conexion/conexion.php';
+         $sql = "SELECT * FROM sliders WHERE visible = 1 LIMIT " . $cantidad;
+         $query = $connection->prepare($sql);
+         $query->execute();
+
+         return $query->fetchAll();
+    }
+  
 
 ?>

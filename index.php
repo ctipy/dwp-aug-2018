@@ -16,12 +16,15 @@
 		<!-- Slider -->
 		<section class="container">
 			<div id="slides" class="owl-carousel owl-theme">
-				<div class="item"> 
-					<img src="images/slides/1.png">
+			
+			<?php foreach(getSliders(5) as $fila ){   ?>	
+			 
+			   <div class="item"> 
+					<a href="<?php echo $fila['url'];?>" target="<?php echo $fila['target']; ?>"> <img src="images/sliders/<?php echo $fila['imagen']; ?>">  </a>				
 				</div>
-				<div class="item"> 
-				  	<img src="images/slides/2.png">
-				</div>
+			
+			<?php }  ?>	
+
 			</div>
 		</section>
 

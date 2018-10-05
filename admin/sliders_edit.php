@@ -28,18 +28,17 @@
   <!-- Google Font -->
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-
-
         <script>
-         function subir_imagen(input, carpeta)
-        {
-            self.name = 'opener';
-            var name = document.getElementsByName("nombre")[0].value;
-            remote = open('gestor/subir_imagen.php?name='+name+'&input='+input+'&carpeta='+carpeta ,'remote', 'align=center,width=600,height=300,resizable=yes,status=yes');
-            remote.focus();
-        }
+            function subir_imagen(input, carpeta)
+            {
+                self.name = 'opener';
+                var name = document.getElementsByName("nombre")[0].value;
+                remote = open('gestor/subir_imagen.php?name='+name+'&input='+input+'&carpeta='+carpeta ,'remote', 'align=center,width=600,height=300,resizable=yes,status=yes');
+                remote.focus();
+            }
 
-        </script>
+            </script>
+
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -68,54 +67,52 @@ desired effect
 
   <?php include 'includes/header.php'; ?>
   <?php
-    //Validad si existe un post
-    if( isset($_POST) ){
-        //Si existe un POST, validar que los campos cumplan con los requisitos
-        if($_POST['guardar'] == 'guardar' && $_POST['nombre'] != '' && $_POST['imagen'] != ''){
-            
-            //Definir una variable con la consulta SQL.
-            $sql = 'INSERT INTO sliders (nombre, imagen,  url, target, visible, fecha_add) VALUES (:nombre, :imagen, :url, :target, :visible, NOW() )';
-            //Definiendo una variable $data con los valores a guardase en la consulta sql
-            $data = array(
-                'nombre' => $_POST['nombre'],
-                'imagen' => $_POST['imagen'],
-                'url' => $_POST['url'],
-                'target'    => $_POST['target'],
-                'visible' => $_POST['visible']
-            );
+        //Obtener el registro del usuario
+        $total = 0;
+        if(isset($_GET['id'])){
 
+            if($_GET['id'] > 0){
 
+                $sql = "SELECT * FROM sliders WHERE id = " . $_GET['id'];
+                $query = $connection->prepare($sql);
+                $query->execute();
+                $total = $query->rowCount();
 
-           //Prepamos la conexion  
-           $query = $connection->prepare($sql);
-            
-            //Definimos un try catch para que devuelta un estado
-            try{
-                 //Si sale bien se guarda los reigstros   
-                 if( $query->execute($data) ){
-                     //mensaje verdadero
-                     $mensaje = '<p class="alert alert-success">Registrado correctamente</p>';
-                     echo '<script> window.location = "sliders.php"; </script>';
-                  
-                    
-                 } else {
-                     //mesnaje falso
-                    $mensaje = '<p class="alert alert-danger">Ocurrio un error al guardar</p>';
-                 }
-
-            } catch (PDOException $e) {
-                //si sale mal devuelve el error con el motivo
-                print_r($e);
-                
-                $mensaje = '<p class="alert alert-danger">'. $e .'</p>';
-           
             }
-        } 
 
-    }
+        }
 
-  
-  ?>
+
+        //Actualizar datos del usuario
+       if(isset($_POST)){
+
+            if($_POST['actualizar'] == 'actualizar' && $_POST['nombre'] != '' && $_POST['imagen'] != ''  && $_POST['id'] > 0){
+                   $sql = "UPDATE sliders set nombre = :nombre, imagen=:imagen, url=:url, target=:target,visible=:visible, fecha_upd=NOW() WHERE id = " . $_POST['id'];
+                   $data =  array(
+                        'nombre' => $_POST['nombre'],
+                        'imagen' => $_POST['imagen'],
+                        'url' => $_POST['url'],
+                        'target' => $_POST['target'],
+                        'visible' => $_POST['visible']
+                   );
+                    
+                   $query = $connection->prepare($sql);
+
+
+                 try{
+
+                    $query->execute($data);
+
+                    } catch(Exception $e){
+
+
+                 }
+                   
+            }
+
+       }
+
+   ?>
  <?php include 'includes/mensajes.php';?>
   
   <!-- ASIDE - SIDEBAR  -->
@@ -125,7 +122,7 @@ desired effect
   <div class="content-wrapper">
     <section class="content-header">
       <h1>
-        Registrar nuevo usuario 
+        Editar usuario
       </h1>
       <ol class="breadcrumb">
         <li><a href="index.php"><i class="fa fa-home"></i> Inicio</a></li>
@@ -139,7 +136,7 @@ desired effect
         <div class="row">
           <div class="col-xs-12">
              
-            <a href="usuarios.php" class="btn btn-warning btn-lg pull-right" href=""> <i class="fa fa-close"></i> Salir</a>
+            <a href="sliders.php" class="btn btn-warning btn-lg pull-right" href=""> <i class="fa fa-close"></i> Salir</a>
         </div>
         
         </div>
@@ -149,23 +146,26 @@ desired effect
 
       <div class="panel">
         <div class="row">
-            <form action="sliders_add.php" method="POST" name="form">
+          <?php if($total > 0) { 
+                 $slider = $query->fetchAll()[0];
+                // var_dump($usuario);                 
+              ?>  
+            <form action="sliders_edit.php" method="POST" name="form">
                 <div class="form-group col-md-4">
                     <label>Nombre</label>
-                    <input type="text" name="nombre" required class="form-control">
+                    <input type="text" name="nombre" value="<?php echo $slider['nombre']; ?>" required class="form-control">
                 </div>
 
-                 <div class="form-group col-md-4">
+               <div class="form-group col-md-4">
                     <label>Url</label>
-                    <input type="text" name="url" required class="form-control">
+                    <input type="text" name="url" value="<?php echo $slider['url']; ?>" required class="form-control">
                 </div>
 
-                
                  <div class="form-group col-md-2">
-                    <label>Visble</label>
+                    <label>Visible</label>
                     <select name="visible" class="form-control" required>
-                        <option value="1">Mostrar</option>
-                        <option value="0">No mostrar</option>
+                        <option value="1" <?php if($slider['visible'] == 1){ echo 'selected'; } ?>  >Mostrar</option>
+                        <option value="0" <?php if($slider['visible'] == 0){ echo 'selected'; } ?> >No Mostrar</option>
                     </select>
                 </div>
 
@@ -173,29 +173,30 @@ desired effect
                  <div class="form-group col-md-2">
                     <label>Target</label>
                     <select name="target" class="form-control" required>
-                        <option value="_parent">Misma pagina</option>
-                        <option value="_blank">Pagina nueva</option>
+                        <option value="_parent" <?php if($slider['target'] == "_parent"){ echo 'selected'; } ?>  >Misma pagina</option>
+                        <option value="_blank" <?php if($slider['target'] == "_blank"){ echo 'selected'; } ?> >Pagina nueva</option>
                     </select>
                 </div>
 
-
                 <div class="form-group col-md-2">
                     <label>Imagen</label>
-                    <input type="text" name="imagen"  class="form-control" id="imagen"  onclick="subir_imagen('imagen', 'sliders')">
+                    <input type="text" name="imagen" value="<?php echo $slider['imagen']; ?>"  class="form-control" id="imagen"  onclick="subir_imagen('imagen', 'sliders')">
                 </div>
 
-
-                <script>
-                
-
-                </script>
 
                 <div class="col-md-2">
                         <br>
-                       <button type="submit" name="guardar" value="guardar" class="btn btn-primary">Guardar</button> 
+                        <input type="hidden" name="id"  value="<?php echo $slider['id']; ?>">
+                       <button type="submit" name="actualizar" value="actualizar" class="btn btn-primary">Actualizar</button> 
                 </div>
 
             </form>
+          <?php } else {  ?>
+
+            <a href="sliders.php" class="btn btn-warning">El registro no exite, volver a la lista</a>
+          
+          <?php } ?>
+
         </div>
       </div>
     </section>
