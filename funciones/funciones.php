@@ -17,7 +17,7 @@
 
     function getSliders($cantidad){
          include 'conexion/conexion.php';
-         $sql = "SELECT * FROM colaboradores WHERE visible = 1 LIMIT " . $cantidad;
+         $sql = "SELECT * FROM sliders WHERE visible = 1 LIMIT " . $cantidad;
          $query = $connection->prepare($sql);
          $query->execute();
 
@@ -58,7 +58,10 @@ function getCms($id)
     $query = $connection->prepare($sql);
     $query->execute();
 
-    return $query->fetchAll()[0];
+    if ($query->rowCount() > 0) {
+       return $query->fetchAll()[0];
+    }
+    return 0;
 }
 
 

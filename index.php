@@ -38,7 +38,7 @@
 
 				<div class="row">
 
-				<?php if( count($cms = getCms(1)) > 0) { ?>
+				<?php if( count($cms = getCms(100)) > 0) { ?>
 					<div class="col-sm-3">
 						<div class="box-info">
 							<i class="icon ion-md-analytics"></i> 
