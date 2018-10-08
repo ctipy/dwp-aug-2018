@@ -54,6 +54,11 @@ desired effect
 
   <!-- HEADER -->
   <?php include 'includes/header.php'; ?>
+<?php
+  $sql = "SELECT * from cms ORDER by fecha_add DESC";
+  $query = $connection->prepare($sql);
+  $query->execute();
+?>
   
   <!-- ASIDE - SIDEBAR  -->
   <?php include 'includes/aside.php'; ?>
@@ -62,7 +67,7 @@ desired effect
   <div class="content-wrapper">
     <section class="content-header">
       <h1>
-        Página Inicial
+        Contenido
       </h1>
       <ol class="breadcrumb">
         <li><a href="index.php"><i class="fa fa-home"></i> Inicio</a></li>
@@ -73,7 +78,7 @@ desired effect
       <div class="panel">
         <div class="row">
           <div class="col-xs-12">
-            <a class="btn btn-primary btn-lg pull-right" href=""> <i class="fa fa-plus"></i></a>
+            <a class="btn btn-primary btn-lg pull-right" href="cms_add.php"> <i class="fa fa-plus"></i></a>
         </div>
         </div>
       </div>
@@ -82,25 +87,27 @@ desired effect
         <table class="table table-bordered table-striped table-hover">
         <thead>
           <tr>
-            <th>Col 1</th>
-            <th>Col 2</th>
-            <th>Col 3</th>
-            <th>Col 4</th>
+            <th>ID</th>
+            <th>IMAGEN</th>
+            <th>TITULO</th>
+            <th>VISIBLE</th>
+            <th>FECHA ADD</th>
             <th class="text-center" width="10%">
               <i class="fa fa-cogs"></i>
             </th>
           </tr>
         </thead>
         <tbody>
-          <?php for ($i=0; $i < 10 ; $i++) { ?>
+          <?php foreach ($query->fetchAll() as $fila) { ?>
            <tr>
-            <td>Col 1</td>
-            <td>Col 2</td>
-            <td>Col 3</td>
-            <td>Col 4</td>
+            <td><?php echo $fila['id']; ?></td>
+            <td><img src="../images/cms/<?php echo $fila['imagen']; ?>"> </td>
+            <td><?php echo $fila['titulo']; ?></td>
+            <td><?php echo $fila['visible']; ?></td>
+            <?php echo $fila['fecha_add']; ?>
             <td class="text-center">
-              <a class="btn btn-warning btn-xs" href=""> <i class="fa fa-edit"></i></a>
-              <a class="btn btn-danger btn-xs" href=""> <i class="fa fa-remove"></i></a>
+              <a class="btn btn-warning btn-xs" href="cms_edit.php?id=<?php echo $fila['id']; ?>"> <i class="fa fa-edit"></i></a>
+              <a class="btn btn-danger btn-xs" href="cms_delete.php?id=<?php echo $fila['id']; ?>"> <i class="fa fa-remove"></i></a>
             </td>
           </tr>
           <?php } ?>

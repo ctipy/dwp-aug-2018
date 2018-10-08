@@ -37,15 +37,34 @@
 				</p>
 
 				<div class="row">
+
+				<?php if( count($cms = getCms(1)) > 0) { ?>
 					<div class="col-sm-3">
 						<div class="box-info">
-							<i class="icon ion-md-analytics"></i>
-							<h3>Lorem ipsum dolor</h3>
+							<i class="icon ion-md-analytics"></i> 
+							<h3><?php echo $cms['titulo']; ?></h3>
 							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+								<?php echo $cms['descripcion_corta']; ?>
 							</p>
 						</div>
 					</div>
+				<?php } ?>	
+
+
+
+				<?php foreach(getCmsLista(3) as $cms) { ?>
+					<div class="col-sm-3">
+						<div class="box-info">
+							<i class="icon ion-md-analytics"></i> 
+							<h3><?php echo $cms['titulo']; ?></h3>
+							<p>
+								<?php echo $cms['descripcion_corta']; ?>
+							</p>
+						</div>
+					</div>
+				<?php } ?>	
+
+				
 
 					<div class="col-sm-3">
 						<div class="box-info">
