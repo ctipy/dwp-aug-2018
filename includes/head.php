@@ -7,5 +7,5 @@
 <link rel="stylesheet" href="css/ionicons.min.css">
 <link rel="stylesheet" href="css/estilos.css">
 <?php 
-include('funciones/funciones.php');
+
 ?>

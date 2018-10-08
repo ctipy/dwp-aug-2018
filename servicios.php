@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?php include 'funciones/funciones.php'; ?>
 <html lang="es">
 <head>
 	<title>Servicios | Mi empresa</title>
@@ -18,16 +19,16 @@
 					<div class="col-sm-12">
 						<h3 class="title">Servicios que ofrecemos</h3>
 					</div>
-					<?php for ($i=0; $i < 9; $i++) { ?>
+					<?php foreach (getServicios(12) as $fila) { ?>
 						<div class="col-sm-4">
 							<div class="box-servicios">
 								<a href="#">
-									<img src="images/servicios/1.jpg">
+									<img src="images/servicios/<?php echo $fila['imagen']; ?>">
 								</a>
 
-								<h4>Nombre del Servicio</h4>
+								<h4><?php echo $fila['nombre']; ?></h4>
 
-								<a href="detalles.php">conoce más</a>
+								<a href="detalles.php?id=<?php echo $fila['id']; ?>">conoce más</a>
 							</div>
 						</div>
 					<?php } ?>

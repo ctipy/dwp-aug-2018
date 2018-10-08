@@ -1,4 +1,6 @@
 <?php require '../conexion/conexion.php';?>
+<?php require '../funciones/funciones.php'; ?>
+
 <header class="main-header">
 
     <!-- Logo -->

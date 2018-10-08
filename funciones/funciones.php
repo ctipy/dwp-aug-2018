@@ -1,18 +1,18 @@
 <?php
-    function getRealIP()
-    {
-        // Mediante $_SERVER['HTTP_CLIENT_IP'] verificamos si la IP es una conexión compartida.
-        // Mediante $_SERVER['HTTP_X_FORWARDED_FOR'] verificamos si la IP pasa por un proxy.
-        // Mediante $_SERVER['REMOTE_ADDR'] obtenemos la dirección IP desde la cual está viendo la página actual el usuario.
+    // function getRealIP()
+    // {
+    //     // Mediante $_SERVER['HTTP_CLIENT_IP'] verificamos si la IP es una conexión compartida.
+    //     // Mediante $_SERVER['HTTP_X_FORWARDED_FOR'] verificamos si la IP pasa por un proxy.
+    //     // Mediante $_SERVER['REMOTE_ADDR'] obtenemos la dirección IP desde la cual está viendo la página actual el usuario.
 
-        if (!empty($_SERVER['HTTP_CLIENT_IP']))
-            return $_SERVER['HTTP_CLIENT_IP'];
+    //     if (!empty($_SERVER['HTTP_CLIENT_IP']))
+    //         return $_SERVER['HTTP_CLIENT_IP'];
 
-        if (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))
-            return $_SERVER['HTTP_X_FORWARDED_FOR'];
+    //     if (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))
+    //         return $_SERVER['HTTP_X_FORWARDED_FOR'];
 
-        return $_SERVER['REMOTE_ADDR'];
-    }
+    //     return $_SERVER['REMOTE_ADDR'];
+    // }
 
 
     function getSliders($cantidad){
@@ -76,23 +76,51 @@ function getCmsLista($cantidad)
 }
 
 
+//Funciones para manejar servicios
+function   getServicios($cantidad){
+    include 'conexion/conexion.php';
+    $sql = "SELECT * FROM servicios WHERE visible = 1 LIMIT " . $cantidad;
+    $query = $connection->prepare($sql);
+    $query->execute();
 
-function birthday($fecha)
-{
-    if ($fecha != '') :
-        $fecha = date('m-d', strtotime($fecha));
-    $hoy = date('m-d');
-    if ($fecha == $hoy) :
-        return '<i class="fa fa-heart"></i>';
-    else :
-        return '';
-    endif;
-    else :
-        return '';
-    endif;
+    return $query->fetchAll();
+
+}
+
+function getDetalleServicio($id){
+    include 'conexion/conexion.php';
+    $sql = "SELECT * FROM servicios WHERE id = " . $id;
+    $query = $connection->prepare($sql);
+    $query->execute();
+
+    if ($query->rowCount() > 0) {
+        return $query->fetchAll()[0];
+    }
+    return 0;
 }
 
 
+function getEnlacesPadre(){
+    include '../conexion/conexion.php';
+    $sql = "SELECT * FROM links WHERE visible = 1 AND id_padre = 0";
+    $query = $connection->prepare($sql);
+    $query->execute();
+
+    return $query->fetchAll();
+}
+
+function getNombreEnlace($id){
+    include '../conexion/conexion.php';
+    $sql = "SELECT * FROM links WHERE id = " . $id;
+    $query = $connection->prepare($sql);
+    $query->execute();
+
+    if ($query->rowCount() > 0) {
+        $fila =  $query->fetchAll()[0];
+        return $fila['nombre'];
+    }
+    return 'Principal';
+}
 
 
 

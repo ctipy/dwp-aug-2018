@@ -169,6 +169,7 @@ CREATE TABLE IF NOT EXISTS `cursodwp`.`links` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(255) NOT NULL,
   `id_padre` INT NULL,
+  `posicion` INT NULL,
   `url` VARCHAR(255) NULL,
   `target` VARCHAR(255) NULL,
   `visible` TINYINT(1) NULL,
