@@ -1,11 +1,8 @@
 <?php
 session_start();
-
-
 if( !isset($_SESSION['logueado']) ){
     header('Location: login.php');
 }
-
 ?>
 <!DOCTYPE html>
 <html>
