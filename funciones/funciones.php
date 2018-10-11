@@ -122,6 +122,39 @@ function getNombreEnlace($id){
     return 'Principal';
 }
 
+function getMenuPadre($posicion)
+{
+    include 'conexion/conexion.php';
+    $sql = "SELECT * FROM links WHERE id_padre = 0 AND posicion =  " . $posicion;
+
+    $query = $connection->prepare($sql);
+    $query->execute();
+
+    if ($query->rowCount() > 0) {
+        return $query->fetchAll();
+    }
+
+    return false;
+
+}
+
+
+
+function getMenuHijo($id_padre){
+    include 'conexion/conexion.php';
+    $sql = "SELECT * FROM links WHERE id_padre = " . $id_padre . " ORDER BY posicion " ;
+
+    $query = $connection->prepare($sql);
+    $query->execute();
+
+    if($query->rowCount() > 0 ){
+        return $query->fetchAll();
+    }
+
+    return false;
+    
+}
+
 
 
   

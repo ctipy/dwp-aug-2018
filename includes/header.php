@@ -15,18 +15,34 @@
 	    	</div>
 			<div class="collapse navbar-collapse" id="menu-navbar">      
 			    <ul class="nav navbar-nav navbar-right">
-			        <li><a href="index.php">Inicio</a></li>
-			        <li><a href="clientes.php">Clientes</a></li>
-			        <li><a href="servicios.php">Servicios</a></li>
-			        <li><a href="contacto.php">Contacto</a></li>
-			        <li class="dropdown">
-			         	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-			         		Contenido <span class="caret"></span>
-			         	</a>
-			         	<ul class="dropdown-menu">
-			            	<li><a href="nosotros.php">Sobre Nosotros</a></li>
-			          	</ul>
-			        </li>
+					
+					<?php if($menu_padre = getMenuPadre(1)) {  ?>
+
+						<?php foreach ($menu_padre as $fila) { ?>
+		
+							<?php if ($menu_hijo = getMenuHijo($fila['id'])) { ?>
+						  	<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			         			<?php echo $fila['nombre'] ?><span class="caret"></span>
+			         		</a>	
+								  <ul class="dropdown-menu">	
+								
+									<?php foreach ($menu_hijo as $fila_hijo) { ?>
+
+										<li><a href="<?php echo $fila_hijo['url']; ?>"><?php echo $fila_hijo['nombre']; ?></a></li>
+
+									<?php } ?>
+								  </ul>
+							</li>		  				
+							 <?php } else { ?>
+									<li><a href="<?php echo $fila['url']; ?>"><?php echo $fila['nombre']; ?></a></li>
+							 <?php } ?>		
+									
+						<?php	} ?>		
+					
+					<?php } ?>
+							
+			        
 			    </ul>
 			</div>
 		</div>

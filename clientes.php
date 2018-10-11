@@ -1,3 +1,4 @@
+<?php include 'funciones/funciones.php'; ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
