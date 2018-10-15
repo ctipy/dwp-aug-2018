@@ -28,6 +28,17 @@
   <!-- Google Font -->
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+           <script>
+            function subir_imagen(input, carpeta)
+            {
+                self.name = 'opener';
+                var name = 'nombre';
+                remote = open('gestor/subir_imagen.php?name='+name+'&input='+input+'&carpeta='+carpeta ,'remote', 'align=center,width=600,height=300,resizable=yes,status=yes');
+                remote.focus();
+            }
+
+            </script>
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -54,6 +65,64 @@ desired effect
 
   <!-- HEADER -->
   <?php include 'includes/header.php'; ?>
+  <?php
+        //Obtener el registro del usuario
+  $total = 0;
+  //Recuperar los valores del parametro
+  $sql = "SELECT * FROM parametros WHERE id = 1 ";
+  $query = $connection->prepare($sql);
+  $query->execute();
+  $total = $query->rowCount();
+
+  //Si no hay un parametro registrado, crear el primer registro
+  if(!$total > 0){
+    $sql = 'INSERT INTO parametros (id) VALUES (1)';
+    $query = $connection->prepare($sql);
+    $query->execute();
+  }  
+
+
+
+        //Actualizar datos del usuario
+  if (isset($_POST)) {
+
+    if ($_POST['actualizar'] == 'actualizar' && $_POST['id'] > 0) {
+      $sql = "UPDATE parametros set empresa = :empresa, logo=:logo, favicon=:favicon, email=:email, direccion=:direccion, whatsapp=:whatsapp, phone=:phone, horarios=:horarios, facebook=:facebook, twitter=:twitter, instagram=:instagram, youtube=:youtube, map=:map   WHERE id = " . $_POST['id'];
+        
+      $data = array(
+        'empresa' => $_POST['empresa'],
+        'logo' => $_POST['logo'],
+        'favicon' => $_POST['favicon'],
+        'email' => $_POST['email'],
+        'direccion' => $_POST['direccion'],
+        'whatsapp' => $_POST['whatsapp'],
+        'phone' => $_POST['phone'],
+        'horarios' => $_POST['horarios'],
+        'facebook' => $_POST['facebook'],
+        'twitter' => $_POST['twitter'],
+        'instagram' => $_POST['instagram'],
+        'youtube' => $_POST['youtube'],
+        'map' => $_POST['map']
+      );
+
+      $query = $connection->prepare($sql);
+
+
+      try {
+
+        $query->execute($data);
+       
+
+      } catch (Exception $e) {
+
+
+      }
+
+    }
+
+  }
+
+  ?>
   
   <!-- ASIDE - SIDEBAR  -->
   <?php include 'includes/aside.php'; ?>
@@ -69,7 +138,95 @@ desired effect
       </ol>
     </section>
     <section class="content container-fluid">
-      
+      <div class="row">
+        <?php if ($total > 0) {
+          $parametros = $query->fetchAll()[0];
+                // var_dump($usuario);                 
+          ?>  
+            <form action="parametros.php" method="POST" name="form">
+                <div class="form-group col-md-4">
+                    <label>Empresa</label>
+                    <input type="text" name="empresa" value="<?php echo $parametros['empresa']; ?>" required class="form-control">
+
+                </div>
+
+               <div class="form-group col-md-4">
+                    <label>Email</label>
+                    <input type="email" name="email" value="<?php echo $parametros['email']; ?>" required class="form-control">
+                </div>
+
+                 <div class="form-group col-md-4">
+                    <label>Direccion</label>
+                    <input type="text" name="direccion" value="<?php echo $parametros['direccion']; ?>" required class="form-control">
+                </div>
+
+                  <div class="form-group col-md-4">
+                    <label>Whatsapp</label>
+                    <input type="text" name="whatsapp" value="<?php echo $parametros['whatsapp']; ?>" required class="form-control">
+                </div>
+
+                   <div class="form-group col-md-4">
+                    <label>Telefono</label>
+                    <input type="text" name="phone" value="<?php echo $parametros['phone']; ?>" required class="form-control">
+                </div>
+
+
+              <div class="form-group col-md-4">
+                    <label>Horarios</label>
+                    <input type="text" name="horarios" value="<?php echo $parametros['horarios']; ?>" required class="form-control">
+                </div>
+
+                  <div class="form-group col-md-4">
+                    <label>Facebook</label>
+                    <input type="text" name="facebook" value="<?php echo $parametros['facebook']; ?>" required class="form-control">
+                </div>
+
+
+                <div class="form-group col-md-4">
+                    <label>Twitter</label>
+                    <input type="text" name="twitter" value="<?php echo $parametros['twitter']; ?>" required class="form-control">
+                </div>
+
+                 <div class="form-group col-md-4">
+                    <label>Instagram</label>
+                    <input type="text" name="instagram" value="<?php echo $parametros['instagram']; ?>" required class="form-control">
+                </div>
+
+                   <div class="form-group col-md-4">
+                    <label>Youtube</label>
+                    <input type="text" name="youtube" value="<?php echo $parametros['youtube']; ?>" required class="form-control">
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label>Mapa</label>
+                    <input type="text" name="map" value="<?php echo $parametros['map']; ?>" required class="form-control">
+                </div>
+
+                  <div class="form-group col-md-2">
+                    <label>Logo</label>
+                    <input type="text" name="logo" value="<?php echo $parametros['logo']; ?>"  class="form-control" id="logo"  onclick="subir_imagen('logo', 'uploads')">
+                </div>
+
+                 <div class="form-group col-md-2">
+                    <label>Favicon</label>
+                    <input type="text" name="favicon" value="<?php echo $parametros['favicon']; ?>"  class="form-control" id="favicon"  onclick="subir_imagen('favicon', 'uploads')">
+                </div>
+
+                <div class="col-md-2">
+                        <br>
+                        <input type="hidden" name="id"  value="<?php echo $parametros['id']; ?>">
+                       <button type="submit" name="actualizar" value="actualizar" class="btn btn-primary">Actualizar</button> 
+                </div>
+
+            </form>
+          <?php 
+        } else { ?>
+
+            <a href="sliders.php" class="btn btn-warning">El registro no exite, volver a la lista</a>
+          
+          <?php 
+        } ?>
+      </div>
     </section>
   </div>
 

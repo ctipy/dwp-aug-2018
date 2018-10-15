@@ -36,6 +36,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `cursodwp`.`parametros` (
   `id` INT NOT NULL AUTO_INCREMENT,
+   `empresa` VARCHAR(255) NULL,
   `logo` VARCHAR(255) NULL,
   `favicon` VARCHAR(255) NULL,
   `email` VARCHAR(255) NULL,
