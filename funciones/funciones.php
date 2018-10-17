@@ -172,8 +172,9 @@ function parametros(){
 
 
 function registrar_mensaje($post){
+
     include 'conexion/conexion.php';
-    $sql = "INSERT INTO mensajes (nombre, email, asunto, telefono, mensaje, fecha_add) values (:nombre, :email, :asunto,:telefono, :mensaje, now())";
+    $sql = "INSERT INTO mensajes (nombre, email, asunto, telefono, mansaje) values (:nombre, :email, :asunto, :telefono, :mensaje)";
     //Definiendo una variable $data con los valores a guardase en la consulta sql
     $data = array(
         'nombre' => $post['nombre'],
@@ -183,7 +184,29 @@ function registrar_mensaje($post){
         'mensaje' => $post['mensaje']
     );
     $query = $connection->prepare($sql);
-    $query->execute($data);
+    try {
+        if($query->execute($data)){
+            return enviar_email($post);
+        }
+        return 'Mensaje no enviado';
+
+
+    } catch (PDOException $e) {
+        //si sale mal devuelve el error con el motivo
+      return $e;
+
+    }
+
+}
+
+
+function enviar_email($post){
+    $headers = "From: ". $post['email'];
+    if(mail('jesus@cti.com.py', $post['asunto'], $post['mensaje'], $headers)){
+        return 'Mensaje enviado correctamente';
+    }
+
+    return 'Mensaje no enviado';
 
 }
 

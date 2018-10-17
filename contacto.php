@@ -42,7 +42,8 @@
 
 					<!-- formulario de cotacto -->
 					<div class="col-sm-6">
-						<form>
+						<?php var_dump(registrar_mensaje($_POST)); ?>
+						<form method="POST">
 							<input type="text" 	name="nombre" 	placeholder="Nombre y Apellido" class="form-control">
 							<input type="email" name="email" 	placeholder="E-mail" 			class="form-control">
 							<input type="text" 	name="asunto" 	placeholder="Asunto" 			class="form-control">
