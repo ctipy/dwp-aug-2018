@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<title>Contacto | Mi empresa</title>
+	<title>Contacto | <?php echo parametros()['empresa']; ?></title>
 	<meta name="description" content="">
 	<?php include 'includes/head.php'; ?>
 </head>
@@ -19,14 +19,14 @@
 					<div class="col-sm-12">
 						<h3 class="title">Dirección y Contacto</h3>
 						<p>
-							<i class="icon ion-md-map"></i> Avda. Mariscal López (Super Carretera)
+							<i class="icon ion-md-map"></i> <?php echo parametros()['direccion']; ?>
 						</p>
 						<p>
-							<i class="icon ion-md-call"></i> +595 21 3280 940 | 
-							<i class="icon ion-logo-whatsapp"></i> +595 973 408 000
+							<i class="icon ion-md-call"></i> <?php echo parametros()['phone']; ?>
+							<i class="icon ion-logo-whatsapp"></i> <?php echo parametros()['whatsapp']; ?>
 						</p>
 						<p>
-							<b>Horarios de Atención</b> Lunes a Viernes de 09:00hs - 14:00hs
+							<b>Horarios de Atención</b> <?php echo parametros()['horarios']; ?>
 						</p>
 					</div>
 				</div>
@@ -36,7 +36,8 @@
 				<div class="row">
 					<!-- google map -->
 					<div class="col-sm-6">
-						<iframe src="https://www.google.com/maps/embed?pb" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+				
+						<iframe src="<?php echo parametros()['map']; ?>" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
 					</div>
 
 					<!-- formulario de cotacto -->

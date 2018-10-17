@@ -168,7 +168,22 @@ function parametros(){
      }
      $query->execute();
      return $query->fetchAll()[0];
+}
 
+
+function registrar_mensaje($post){
+    include 'conexion/conexion.php';
+    $sql = "INSERT INTO mensajes (nombre, email, asunto, telefono, mensaje, fecha_add) values (:nombre, :email, :asunto,:telefono, :mensaje, now())";
+    //Definiendo una variable $data con los valores a guardase en la consulta sql
+    $data = array(
+        'nombre' => $post['nombre'],
+        'email' => $post['email'],
+        'asunto' => $post['asunto'],
+        'telefono' => $post['telefono'],
+        'mensaje' => $post['mensaje']
+    );
+    $query = $connection->prepare($sql);
+    $query->execute($data);
 
 }
 

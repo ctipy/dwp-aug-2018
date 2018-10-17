@@ -10,7 +10,7 @@
 				    <span class="icon-bar"></span>
 			    </button>
 	      		<a class="navbar-brand" href="index.php">
-					 <?php if( parametros()['logo'] != '') { ?> 
+					 <?php if( parametros()['logo'] == '') { ?> 
 					  <img src="images/logo.png" width="100px">
 					 <?php } else {  ?>
 						<img src="images/uploads/<?php echo parametros()['logo']; ?>" width="100px">	

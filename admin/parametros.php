@@ -66,20 +66,8 @@ desired effect
   <!-- HEADER -->
   <?php include 'includes/header.php'; ?>
   <?php
-        //Obtener el registro del usuario
-  $total = 0;
-  //Recuperar los valores del parametro
-  $sql = "SELECT * FROM parametros WHERE id = 1 ";
-  $query = $connection->prepare($sql);
-  $query->execute();
-  $total = $query->rowCount();
 
-  //Si no hay un parametro registrado, crear el primer registro
-  if(!$total > 0){
-    $sql = 'INSERT INTO parametros (id) VALUES (1)';
-    $query = $connection->prepare($sql);
-    $query->execute();
-  }  
+
 
 
 
@@ -121,6 +109,26 @@ desired effect
     }
 
   }
+
+
+
+  //Obtener el registro del usuario
+$total = 0;
+//Recuperar los valores del parametro
+$sql = "SELECT * FROM parametros WHERE id = 1 ";
+$query = $connection->prepare($sql);
+$query->execute();
+$total = $query->rowCount();
+
+//Si no hay un parametro registrado, crear el primer registro
+if (!$total > 0) {
+    $sql = 'INSERT INTO parametros (id) VALUES (1)';
+    $query2 = $connection->prepare($sql);
+    $query2->execute();
+}
+
+$query->execute();
+
 
   ?>
   

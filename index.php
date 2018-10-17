@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<title>Desarrollo Web Profesional</title>
+	<title>Desarrollo Web Profesional - <?php echo parametros()['empresa']; ?></title>
 	<meta name="description" content="">
 	<?php include 'includes/head.php'; ?>
 </head>
