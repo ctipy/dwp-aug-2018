@@ -1,10 +1,12 @@
 <?php
     #conexion a base de datos
-    $user = 'root';
-    $password = '';
+    $user = 'root'; //demo_setiembre
+    $password = ''; //o=K5d&$uwoOl
     $host = 'localhost';
-    $dbname = 'cursodwp';
+    $dbname = 'cursodwp'; //demo_setiembre
     $parametros = array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'UTF8'");
+
+    
    
     try
     {

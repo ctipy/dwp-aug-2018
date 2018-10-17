@@ -155,8 +155,22 @@ function getMenuHijo($id_padre){
     
 }
 
+function parametros(){
+    include 'conexion/conexion.php';
+    $sql = "SELECT * FROM parametros where id = 1";
+    $query = $connection->prepare($sql);
+    $query->execute();
+
+    if(!$query->rowCount() > 0) {
+        $sql = "INSERT INTO parametros (id) values (1)";
+        $query2 = $connection->prepare($sql);
+        $query2->execute();
+     }
+     $query->execute();
+     return $query->fetchAll()[0];
 
 
-  
+}
+
 
 ?>

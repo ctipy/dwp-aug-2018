@@ -10,7 +10,11 @@
 				    <span class="icon-bar"></span>
 			    </button>
 	      		<a class="navbar-brand" href="index.php">
-	      			<img src="images/logo.png" width="100px">
+					 <?php if( parametros()['logo'] != '') { ?> 
+					  <img src="images/logo.png" width="100px">
+					 <?php } else {  ?>
+						<img src="images/uploads/<?php echo parametros()['logo']; ?>" width="100px">	
+					<?php } ?>	
 	      		</a>
 	    	</div>
 			<div class="collapse navbar-collapse" id="menu-navbar">      
